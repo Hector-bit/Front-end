@@ -1,0 +1,1 @@
+// receives event array and displays cards from event
