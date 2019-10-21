@@ -1,0 +1,1 @@
+// return new event array to store cards
