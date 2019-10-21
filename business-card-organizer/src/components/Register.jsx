@@ -108,6 +108,7 @@ const FormikRegister = withFormik( {
     };
   },
   validationSchema: Yup.object().shape({
+    // TODO: validation
     name:   Yup.string ().required(),
     email:  Yup.string ().required(),
     passwd: Yup.string ().required(),

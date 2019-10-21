@@ -108,6 +108,7 @@ const FormikCreateCard = withFormik( {
     };
   },
   validationSchema: Yup.object().shape({
+    // TODO: validatioin
     name:   Yup.string ().required(),
     email:  Yup.string ().required(),
     phone:  Yup.string ().matches(
@@ -117,12 +118,8 @@ const FormikCreateCard = withFormik( {
   }),
   handleSubmit( values, { props, resetForm } ) {
 
-    const updatedUser = props.user;
-    
-    updatedUser.card.name    = values.name;
-    updatedUser.card.email   = values.email;
-    updatedUser.card.phone   = values.phone;
-    updatedUser.card.website = values.website;
+    const updatedUser = { ...props.user };
+    updatedUser.card  = { ...values     };
 
     props.setCurrentUser( updatedUser );
 
