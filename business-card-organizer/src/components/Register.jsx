@@ -2,6 +2,7 @@ import React from 'react';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import uuid from 'uuid';
 
 
 const StyledPage = styled.div.attrs( props => ({
@@ -55,7 +56,7 @@ const Register = ( { values, touched, errors, status, setCurrentUser, user } ) =
         <Field
           type = 'text'
           name = 'name'
-          placeholder = 'Name' />
+          placeholder = 'UserName' />
         { touched.name && errors.name && (
           <p className = 'error'>{ errors.name }</p>
         )}
@@ -117,6 +118,7 @@ const FormikRegister = withFormik( {
     values.events = [];
     values.card   = {};
     values.notes  = '';
+    values.id     = uuid.v4();
 
     values.defaultCollection = [];
 

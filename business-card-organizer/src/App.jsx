@@ -7,6 +7,8 @@ import CreateCard    from './components/CreateCard';
 import Card          from './components/Card';
 import ScanCard      from './components/ScanCard';
 import PasswordReset from './components/PasswordReset';
+import Account       from './components/Account';
+import ListEvents    from './components/ListEvents';
 
 
 
@@ -45,6 +47,8 @@ function App() {
       />
       <Route exact path='/pass-reset' component={ PasswordReset } />
       <Route exact path='/scan-card'  component={ ScanCard      } />
+      <Route exact path='/account'    component={ Account       } />
+      <Route exact path='/events'     component={ ListEvents    } />
     </div>
   );
 }

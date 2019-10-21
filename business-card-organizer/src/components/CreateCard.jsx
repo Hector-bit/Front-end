@@ -3,6 +3,8 @@ import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
 
+import Header from './Header';
+
 
 const StyledPage = styled.div.attrs( props => ({
   className: 'create',
@@ -50,6 +52,7 @@ const CreateCard = ( { values, touched, errors, status, setCurrentUser, user } )
 
   return (
     <StyledPage className='create'>
+      <Header user={ user } />
       <StyledForm className='user-form'>
       <h1>Card Details:</h1>
       <Form>
