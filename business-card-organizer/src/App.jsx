@@ -4,11 +4,13 @@ import { Route } from 'react-router-dom';
 import Register      from './components/Register';
 import Login         from './components/Login';
 import CreateCard    from './components/CreateCard';
-import Card          from './components/Card';
+import CardContainer from './components/CardContainer';
 import ScanCard      from './components/ScanCard';
 import PasswordReset from './components/PasswordReset';
 import Account       from './components/Account';
 import ListEvents    from './components/ListEvents';
+import DisplayEvent  from './components/DisplayEvent';
+import CreateEvent   from './components/CreateEvent';
 
 
 
@@ -33,7 +35,7 @@ function App() {
             user           = { currentUser    }
             setCurrentUser = { setCurrentUser } /> }
       />
-      <Route exact path='/create-card'
+      <Route exact path='/edit-card'
         render={ ( props ) =>
           <CreateCard { ...props }
             user           = { currentUser    }
@@ -41,14 +43,35 @@ function App() {
       />
       <Route exact path='/card'
         render={ ( props ) =>
-          <Card { ...props }
+          <CardContainer { ...props }
+            user           = { currentUser      }
+            setCurrentUser = { setCurrentUser   } /> }
+      />
+      <Route exact path='/account'
+        render={ ( props ) =>
+          <Account { ...props }
+          user           = { currentUser    }
+          setCurrentUser = { setCurrentUser } /> }
+      />
+      <Route exact path='/events'
+        render={ ( props ) =>
+          <ListEvents { ...props } 
+            user           = { currentUser }
+            setCurrentUser = { setCurrentUser } /> }
+      />
+      <Route exact path='/events/:event'
+        render={ ( props ) =>
+          <DisplayEvent { ...props } 
+            user={ currentUser } /> }
+      />
+      <Route exact path='/create-event'
+        render={ ( props ) =>
+          <CreateEvent { ...props }
             user           = { currentUser    }
             setCurrentUser = { setCurrentUser } /> }
       />
-      <Route exact path='/pass-reset' component={ PasswordReset } />
-      <Route exact path='/scan-card'  component={ ScanCard      } />
-      <Route exact path='/account'    component={ Account       } />
-      <Route exact path='/events'     component={ ListEvents    } />
+      <Route exact path='/pass-reset'   component={ PasswordReset } />
+      <Route exact path='/scan-card'    component={ ScanCard      } />
     </div>
   );
 }

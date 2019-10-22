@@ -2,26 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 import GetQRCode from './GetQRCode';
+import CreateQRCode from './CreateQRCode';
 
-const StyledPage = styled.div.attrs( props => ({
-  className: 'page',
-}))`
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-`;
 
 const StyledCard = styled.div.attrs( props => ({
   className: 'card',
 }))`
   width: 80%;
   min-width: 300px;
-  max-width: 600px;
+  max-width: 500px;
   display: flex;
   padding: 1rem;
-  margin: 0 auto;
+  margin: 2rem;
   flex-direction: column;
   align-self: center;
   justify-content: space-evenly;
@@ -53,6 +45,7 @@ const StyledContent = styled.div.attrs( props => ({
 
   ul {
     width: 50%;
+    text-align: left;
     list-style-type: none;
   }
 
@@ -67,29 +60,39 @@ const StyledContent = styled.div.attrs( props => ({
 `;
 
 const Card = ( props ) => {
-  const user = props.user
+
+  const user = props.user;
+  const card = props.card ? props.card : user.card;
+
+  const name    = card.name;
+  const email   = card.email;
+  const phone   = card.phone;
+  const website = card.website;
+  const codeUrl = card.codeUrl;
+
+  const code = codeUrl === 'testing' ?
+    <CreateQRCode user={ user } setCurrentUser={ props.setCurrentUser } /> :
+    <GetQRCode codeUrl={ codeUrl } />;
 
   return (
-    <StyledPage className='page'>
-      <StyledCard className='card'> {/* container flex column */}
-        <StyledContent className='card-content'>
-          <img src={ user.img } alt='' />
-          <ul>
-            <li>{ user.card.name    }</li>
-            <li>{ user.card.email   }</li>
-            <li>{ user.card.phone   }</li>
-            <li>{ user.card.website }</li>
-          </ul>
-          <div className='code-container'>
-            <GetQRCode user={ user } setCurrentUser={ props.setCurrentUser } />
-          </div>
-        </StyledContent>
-        <details>
-          <summary>Notes:</summary>
-          <textarea rows='4'>{user.card.notes}</textarea>
-        </details>
-      </StyledCard>
-    </StyledPage>
+    <StyledCard className='card'>
+      <StyledContent className='card-content'>
+        <img src={ card.img } alt='' />
+        <ul>
+          <li>{ name   }</li>
+          <li>{ email   }</li>
+          <li>{ phone   }</li>
+          <li>{ website }</li>
+        </ul>
+        <div className='code-container'>
+          { code }
+        </div>
+      </StyledContent>
+      <details>
+        <summary>Notes:</summary>
+        <textarea rows='4'>{card.notes}</textarea>
+      </details>
+    </StyledCard>
   );
 };
 
