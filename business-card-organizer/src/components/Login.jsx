@@ -1,59 +1,59 @@
-// import React from 'react';
-// import { NavLink } from 'react-router-dom';
-// import { withFormik, Form, Field } from 'formik';
-// import * as Yup from 'yup';
-// import styled from 'styled-components';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { withFormik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import styled from 'styled-components';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+const StyledPage = styled.div.attrs( props => ({
+  className: 'login',
+}))`
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+`;
 
-// const StyledPage = styled.div.attrs( props => ({
-//   className: 'login',
-// }))`
-//   width: 100vw;
-//   height: 100vh;
-//   overflow: hidden;
-//   display: flex;
-//   justify-content: center;
-// `;
+const StyledForm = styled.div.attrs( props => ({
+  className: 'user-form',
+}))`
 
-// const StyledForm = styled.div.attrs( props => ({
-//   className: 'user-form',
-// }))`
+  width: 80%;
+  min-width: 300px;
+  max-width: 600px;
+  display: flex;
+  padding: 1rem;
+  margin: 0 auto;
+  flex-direction: column;
+  align-self: center;
+  justify-content: space-evenly;
+  box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
+`;
 
-//   width: 80%;
-//   min-width: 300px;
-//   max-width: 600px;
-//   display: flex;
-//   padding: 1rem;
-//   margin: 0 auto;
-//   flex-direction: column;
-//   align-self: center;
-//   justify-content: space-evenly;
-//   box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
-// `;
+const StyledFields = styled.div.attrs( props => ({
+  className: 'form-field-wrapper',
+}))`
 
-// const StyledFields = styled.div.attrs( props => ({
-//   className: 'form-field-wrapper',
-// }))`
+  display: flex;
+  padding: 1rem;
+  margin: 0 auto;
+  flex-direction: column;
 
-//   display: flex;
-//   padding: 1rem;
-//   margin: 0 auto;
-//   flex-direction: column;
+  input, button {
+    margin: 0.4rem;
+    font-size: 1.6rem;
+  }
+`;
 
-//   input, button {
-//     margin: 0.4rem;
-//     font-size: 1.6rem;
-//   }
-// `;
-
-// const StyledLinks = styled.div.attrs( props => ({
-//   className: 'links',
-// }))`
-//   display: flex;
-//   width: 95%;
-//   margin: 0 auto;
-//   justify-content: space-between;
-// `;
+const StyledLinks = styled.div.attrs( props => ({
+  className: 'links',
+}))`
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+`;
 
 // const Login = ( { values, touched, errors, status, setCurrentUser, user } ) => {
 
@@ -108,18 +108,11 @@
 
 //     resetForm();
 
-//     props.history.push('/card');
+//     props.history.push('/create-card');
 //    }
 // } ) ( Login );
 
-// export default FormikLogin;
-
-import React from 'react';
-
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-import { Redirect } from 'react-router-dom';
-
-class FormikLogin extends React.Component {
+class Login extends React.Component {
   state = {
     credentials: {
       username: '',
@@ -146,7 +139,7 @@ class FormikLogin extends React.Component {
       .then(res => {
         // console.log(res.data.payload)
         localStorage.setItem('token', res.data.payload);
-        this.props.history.push('/bubblepage');
+        this.props.history.push('/card');
       })
       .catch(err => console.log(err.response));
   };
@@ -156,25 +149,37 @@ class FormikLogin extends React.Component {
     //   return <Redirect to="/login" />;
     // }
     return (
-      <div>
-        <form onSubmit={this.login}>
+      <StyledPage className='login'>
+        <StyledForm className='user-form'>
+        <h1>Login:</h1>
+        <Form onSubmit={this.login}>
+          <StyledFields className='form-field-wrapper'>
           <input
             type="text"
             name="username"
             value={this.state.credentials.username}
             onChange={this.handleChange}
           />
+          </StyledFields>
+          <StyledFields>
           <input
             type="password"
             name="password"
             value={this.state.credentials.password}
             onChange={this.handleChange}
           />
-          <button>Log in</button>
-        </form>
-      </div>
+          
+          <button type="submit">Log in</button>
+          </StyledFields>
+        </Form>
+        <StyledLinks className='links'>
+           <NavLink to={ '/register'   } activeClassName='link-active'>Register</NavLink>
+           <NavLink to={ '/pass-reset' } activeClassName='link-active'>Forgot Password</NavLink>
+         </StyledLinks>
+         </StyledForm>
+      </StyledPage>
     );
   }
 }
 
-export default FormikLogin;
+export default Login;
