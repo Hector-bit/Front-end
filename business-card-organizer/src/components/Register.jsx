@@ -127,7 +127,7 @@ const FormikRegister = withFormik( {
     
     resetForm();
 
-    props.history.push('/create-card');
+    props.history.push('/edit-card');
    }
 } ) ( Register );
 

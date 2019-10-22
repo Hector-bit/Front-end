@@ -13,6 +13,7 @@ const StyledPage = styled.div.attrs( props => ({
   height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 `;
 
@@ -120,6 +121,9 @@ const FormikCreateCard = withFormik( {
 
     const updatedUser = { ...props.user };
     updatedUser.card  = { ...values     };
+
+    // TODO: get url from backend and store in:
+    updatedUser.card.codeUrl = 'testing';
 
     props.setCurrentUser( updatedUser );
 
