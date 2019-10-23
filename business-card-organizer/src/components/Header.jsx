@@ -42,6 +42,7 @@ const Header = ( props ) => {
       </div>
       <NavLink to='/card'    activeClassName='link'>Card</NavLink>
       <NavLink to='/events'  activeClassName='link'>Events</NavLink>
+      <NavLink to='/scan'    activeClassName='link'>Scan</NavLink>
       <NavLink to='/account' activeClassName='link'>Account</NavLink>
     </StyledHeader>
   );

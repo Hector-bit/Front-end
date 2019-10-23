@@ -8,3 +8,4 @@ added:
   formik
   yup
   uuid
+  react-qr-reader
