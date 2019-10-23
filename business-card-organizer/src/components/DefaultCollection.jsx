@@ -36,12 +36,11 @@ const StyledPage = styled.div.attrs( props => ({
   }
 `;
 
-const DisplayEvent = ( props ) => {
+const DefaultCollection = ( props ) => {
 
   const user  = props.user;
-  const { event } = props.location.state;
 
-  const tempArray = [];
+  const tempArray = []; // stand in for user.defaultCollection
   const max_cards = 10;
 
   for ( let i = 0; i < max_cards; i++ ) {
@@ -53,7 +52,7 @@ const DisplayEvent = ( props ) => {
     <StyledPage className='page-container'>
       <Header user={ user } />
       <div className='event-container'>
-        <h3>{ event.name }</h3>
+        <h3>My Collection</h3>
         <div className='card-container'>
         {
           tempArray.map( card => (
@@ -66,4 +65,4 @@ const DisplayEvent = ( props ) => {
   );
 };
 
-export default DisplayEvent;
+export default DefaultCollection;
