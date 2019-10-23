@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 
 import Register      from './components/Register';
@@ -11,16 +11,13 @@ import Account       from './components/Account';
 import ListEvents    from './components/ListEvents';
 import DisplayEvent  from './components/DisplayEvent';
 import CreateEvent   from './components/CreateEvent';
+import HandleScanResults from './components/HandleScanResults';
 
 
 
 function App() {
   const [currentUser, setCurrentUser] = useState( {} );
-/* 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
- */
+
   return (
     <div className="App">
       <Route exact path='/'
@@ -70,6 +67,12 @@ function App() {
             user           = { currentUser    }
             setCurrentUser = { setCurrentUser } /> }
       />
+      <Route exact path='/scan'
+        render={ ( props ) =>
+          <ScanCard { ...props }
+            user={ currentUser } /> }
+      />
+      <Route exact path='/scan-result'  component={ HandleScanResults } />
       <Route exact path='/pass-reset'   component={ PasswordReset } />
       <Route exact path='/scan-card'    component={ ScanCard      } />
     </div>
