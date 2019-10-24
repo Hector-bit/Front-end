@@ -14,10 +14,12 @@ const StyledCard = styled.div.attrs( props => ({
   display: flex;
   padding: 1rem;
   margin: 2rem;
+  color: #191A2A;
+  background-color: white;
   flex-direction: column;
   align-self: center;
   justify-content: space-evenly;
-  box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
+  box-shadow: 0 0 12px rgba( 129, 143, 145, 0.4);
 
   summary {
     text-align: center;
@@ -40,7 +42,7 @@ const StyledContent = styled.div.attrs( props => ({
 
   img {
     width: 33%;
-    box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
+    box-shadow: 0 0 12px rgba( 129, 143, 145, 0.4);
   }
 
   ul {
@@ -64,22 +66,25 @@ const Card = ( props ) => {
   const user = props.user;
   const card = props.card ? props.card : user.card;
 
+  const company = card.company;
   const name    = card.name;
   const email   = card.email;
   const phone   = card.phone;
   const website = card.website;
   const codeUrl = card.codeUrl;
+  const notes   = card.notes;
 
-  const code = codeUrl === 'testing' ?
-    <CreateQRCode user={ user } setCurrentUser={ props.setCurrentUser } /> :
-    <GetQRCode codeUrl={ codeUrl } />;
+  const code = codeUrl === 'testing'
+  ? <CreateQRCode user={ user    } setCurrentUser={ props.setCurrentUser } />
+  : <GetQRCode codeUrl={ codeUrl } />;
 
   return (
     <StyledCard className='card'>
       <StyledContent className='card-content'>
         <img src={ card.img } alt='' />
         <ul>
-          <li>{ name   }</li>
+          <li>{ company }</li>
+          <li>{ name    }</li>
           <li>{ email   }</li>
           <li>{ phone   }</li>
           <li>{ website }</li>

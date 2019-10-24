@@ -16,12 +16,19 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   left: 0;
-  box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
-  background-color: white;
+  box-shadow: 0 0 12px rgba( 129, 143, 145, 0.4);
+  background-color: #E7E3D6;
   z-index: 1;
 
   a {
     align-self: center;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 0.8rem;
+
+    &:hover {
+      box-shadow: 0 0 12px rgba( 118, 158, 188, 0.5);
+    }
   }
 
   .logo-container {

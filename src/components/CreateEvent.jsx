@@ -16,6 +16,8 @@ const StyledPage = styled.div.attrs( props => ({
   height: 100vh;
   overflow: hidden;
   display: flex;
+  color: #191A2A;
+  background-color: #E7E3D6;
   flex-direction: column;
   justify-content: center;
 `;
@@ -84,7 +86,6 @@ const FormikCreateEvent = withFormik( {
     };
   },
   validationSchema: Yup.object().shape({
-    // TODO: validatioin
     name: Yup.string ().required(),
   }),
   handleSubmit( values, { props, resetForm } ) {

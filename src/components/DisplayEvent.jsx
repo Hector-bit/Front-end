@@ -14,6 +14,8 @@ const StyledPage = styled.div.attrs( props => ({
   height: 100vh;
   overflow: auto;
   display: flex;
+  color: #191A2A;
+  background-color: #E7E3D6;
   flex-direction: column;
   justify-content: center;
 
@@ -31,7 +33,7 @@ const StyledPage = styled.div.attrs( props => ({
       justify-content: space-evenly;
       width: 70%;
       margin: 0 auto;
-      box-shadow: 0 0 8px rgba( 33, 33, 33, 0.17);
+      box-shadow: 0 0 12px rgba( 129, 143, 145, 0.4);
     }
   }
 `;
@@ -39,7 +41,7 @@ const StyledPage = styled.div.attrs( props => ({
 const DisplayEvent = ( props ) => {
 
   const user  = props.user;
-  const { event } = props.location.state;
+  const { event } = props.location.state || props.event;
 
   const tempArray = [];
   const max_cards = 10;
